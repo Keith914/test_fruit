@@ -1,0 +1,134 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТЕСТ</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+<div class="blink7">УЗНАЙ, КАКОЙ ТЫ <strike>ГЕЙ</strike> ФРУКТ</div>
+<a href="#start" class="button-link"><b><span>ПОЕХАЛИ!</span></b></a>
+
+<div>
+<div id="start">
+ 
+<div class="question-1"> 
+<p><b>1. Как ты просыпаешься утром?</b></p></div>
+<div class="answers-1">
+<p><input type="radio" id="qwe" name="q1" value="сладкий ананас"> Я не проспаюсь, меня будят<br>
+<input type="radio" id="qwe" name="q1" value="нежный персик"> Тихо, грустно, слушаю будильники и... не встаю<br>
+<input type="radio" id="qwe" name="q1" value="горячий банан"> Уже в кроссах</p>
+</div>
+
+<div class="question-2"> 
+<p><b>2. Что ты делаешь на вечеринке?</b></p></div>
+<div class="answers-2">
+<p><input type="radio" id="qwe" name="q2" value="горячий банан"> Танцую на столе - я хочу внимания<br>
+<input type="radio" id="qwe" name="q2" value="сладкий ананас"> Угощаю всех напитками, но контролирую взглядом<br>
+<input type="radio" id="qwe" name="q2" value="нежный персик"> Сижу в углу и обсуждаю Baldur's Gate</p>
+</div>
+
+<div class="question-3"> 
+<p><b>3. Что ты скажешь, если кто-то не любит фрукты?</b></p></div>
+<div class="answers-3">
+<p><input type="radio" id="qwe" name="q3" value="горячий банан"> Каждому свое, хотя это подозрительно...<br>
+<input type="radio" id="qwe" name="q3" value="сладкий ананас"> Ты просто не пробовал...<br>
+<input type="radio" id="qwe" name="q3" value="нежный персик"> Медленно уходит в облако блесток...</p>
+</div>
+
+<div class="question-4"> 
+<p><b>4. Как ты реагируешь на стресс?</b></p></div>
+<div class="answers-4">
+<p><input type="radio" id="qwe" name="q4" value="нежный персик"> Лежу, смотрю в потолок, пока не пройдет само<br>
+<input type="radio" id="qwe" name="q4" value="сладкий ананас"> Дышу по квадрату, делаю чек-лист<br>
+<input type="radio" id="qwe" name="q4" value="горячий банан"> Начинаю все с чистого листа, а хули</p>
+</div>
+
+<div class="question-5"> 
+<p><b>5. Твой идеальный отпуск?</b></p></div>
+<div class="answers-5">
+<p><input type="radio" id="qwe" name="q5" value="сладкий ананас"> Wi-fi детокс на Бали и бонусом просветление<br>
+<input type="radio" id="qwe" name="q5" value="горячий банан"> Неважно где, лишь бы на тусовке<br>
+<input type="radio" id="qwe" name="q5" value="нежный персик"> Дома, под одеялом, с вкусняшками - и так 28 дней...</p>
+</div>
+
+</div>
+
+
+<div style="text-align: center; margin-top: 100px;">
+
+<button id="resultButton" onclick="showResult()" class="result-button">УЗНАТЬ РЕЗУЛЬТАТ</button>
+
+</div>
+
+
+<!-- <div id="result" style=" 
+     display: none;          /* пока скрыт */
+     text-align: center; 
+     margin-top: 30px; 
+     font-size: 24px; 
+     font-weight: bold;
+     padding-bottom: 200px;
+">
+ -->
+
+ <div id="result" style="
+ display: none; 
+ text-align: center; 
+ margin-top: 30px; 
+ padding-bottom: 200px;"><img id="fruitImage" src="" alt="Твой фрукт" style="width:200px; margin-top:20px;"><p id="resultText"></p>
+</div> 
+
+
+  <!-- Здесь появится текст результата -->
+</div>
+
+
+   <script>
+    function showResult() {
+      // 1) Собираем отмеченные ответы
+      const answers = [
+        document.querySelector('input[name="q1"]:checked'),
+        document.querySelector('input[name="q2"]:checked'),
+        document.querySelector('input[name="q3"]:checked'),
+        document.querySelector('input[name="q4"]:checked'),
+        document.querySelector('input[name="q5"]:checked')
+      ];
+    
+      // 2) Считаем, сколько каждого фрукта выбрано
+      const counts = { "сладкий ананас": 0, "нежный персик": 0, "горячий банан": 0 };
+      answers.forEach(a => { if (a) counts[a.value]++; });
+    
+      // 3) Определяем победителя
+      let best = "сладкий ананас";
+      if (counts["нежный персик"] > counts[best]) best = "нежный персик";
+      if (counts["горячий банан"] > counts[best]) best = "горячий банан";
+    
+      // 4) Выводим текст и ставим нужную картинку
+      const fruitImage = document.getElementById('fruitImage');
+      const resultText = document.getElementById('resultText');
+    
+      if (best === "сладкий ананас") {
+        resultText.innerText = "🍍 Ты — сладкий ананас! Яркий и бодрый.";
+        fruitImage.src = "https://cs14.pikabu.ru/post_img/2024/02/27/10/1709051779141849337.jpg";
+      } else if (best === "нежный персик") {
+        resultText.innerText = "🍑 Ты — нежный персик! Мягкий и душевный.";
+        fruitImage.src = "https://www.meme-arsenal.com/memes/712a5b19cbf70b1738dae36b0222f3f9.jpg";
+      } else {
+        resultText.innerText = "🍌 Ты — горячий банан! Энергичный и бесстрашный.";
+        fruitImage.src = "https://i.pinimg.com/736x/7d/6d/fe/7d6dfe15d8e6711ac03f00c100b8dfef.jpg";
+      }
+    
+      // 5) Показываем блок и плавно прокручиваем к нему
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+    </script>
+
+</body>
+
+</html>
